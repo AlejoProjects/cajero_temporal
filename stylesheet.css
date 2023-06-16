@@ -1,0 +1,20 @@
+/*User log se refiere a la ventana que contiene la información del usuario y la contraseña.*/
+.window {
+    display:grid;
+    grid-template-rows: 2fr 2fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 40%;
+    padding-bottom: 5%;
+}
+/*Se refiere a los elementos contenidos dentro de la ventana principal*/
+.user_log_element{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: 5%;
+}
+/*se refiere a la caja pequeña que contiene el texto del usuario y el input*/
+.input_logs {
+    margin-right: 5%;
+}
