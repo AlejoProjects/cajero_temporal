@@ -1,20 +1,247 @@
-/*User log se refiere a la ventana que contiene la información del usuario y la contraseña.*/
+
 .window {
     display:grid;
-    grid-template-rows: 2fr 2fr 1fr;
     justify-content: center;
     justify-items: center;
-    margin-top: 40%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    margin-left:20%;
     padding-bottom: 5%;
+    padding:100px;
+    border-style: solid;
+    width:50%;
+    height:100%;
+
 }
+
 /*Se refiere a los elementos contenidos dentro de la ventana principal*/
 .user_log_element{
     display: flex;
     flex-direction: row;
     align-items: baseline;
     margin-bottom: 5%;
+    
 }
 /*se refiere a la caja pequeña que contiene el texto del usuario y el input*/
 .input_logs {
     margin-right: 5%;
 }
+/*Se refiere a los elementos de la pantalla principal.*/
+#main_menu {
+    display:none;
+    
+    }
+#main_menu_text {
+    margin-left: 21%;
+    position: absolute;
+    margin-top: 1%;
+    
+
+}
+/*Se refiere a los elementos de los botones*/
+#main_menu_buttons{
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    margin-left:20%;
+    padding-bottom: 5%;
+    padding:80px;
+    border-style: solid;
+    width:50%;
+    height:100%;
+
+}
+.main_menu_button{
+    margin-bottom: 25%;
+    width:70%;
+    height:90%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
