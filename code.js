@@ -1,4 +1,5 @@
 let logButton = document.getElementById('log_in_button');
+let users = [{name:"joe",userName:"pal",password:"123"},{name:"pat",userName:"ghanima",password:"321"}];
 class cliente {
     /**La clase cliente tiene las variables de nombre, contraseña  y dinero.
      * Las funciones principales son las relacionadas a la manipulación del dinero.
@@ -6,13 +7,17 @@ class cliente {
      *password es de tipo string
      *money es de tipo double
     */
-    constructor(name, password, money) {
+    constructor(name,user, password, money) {
         name = this.name;
+        user = this.user;
         password = this.password;
         money = this.money;
     }
     get names() {
         return this.name;
+    }
+    get users() {
+        return this.user;
     }
     get passwords() {
         return this.password;
@@ -22,6 +27,9 @@ class cliente {
     }
     set names(n) {
         this.name = n;
+    }
+    set users(u) {
+        this.user = u;
     }
     set passwords(p) {
         this.password = p;
@@ -57,6 +65,7 @@ class cliente {
     }
 }
 let client = new cliente("", "", 500);
+
 function removeUserLog() {
     userWindow = document.getElementById('user_log');
     userWindow.remove();
@@ -70,21 +79,47 @@ function addOptionsWindow() {
     body = document.getElementById('main_window');
     body.appendChild(ventanaPrincipal);
     ventanaPrincipal.appendChild(textoPrueba);
+
 }
+function testClient(use,pass){
+    let validate = false;
+    let respuesta = [validate,"","",""];
+    for(i in users){    
+        if(use == users[i].userName && pass == users[i].password){
+            validate = true;
+            respuesta = [validate,users[i].name,users[i].userName,users[i].password];
+            break;
+        }
+    }
+    return respuesta;
+}
+
 function defineClient() {
     /**Crea un cliente al  */
     let mainMenu = document.getElementById('main_menu');
     let mainMenuText = document.getElementById('main_menu_text');
-    nam = document.getElementById('username_input').value;
-    password = document.getElementById('password_input').value;
-    client.names = nam;
-    client.passwords = password;
-    client.moneys = 500;
-    removeUserLog();
-    mainMenu.style.display  = 'block';
-    mainMenuText.innerHTML = 'hola '+client.names + ' bienvenido al portal principal';
+    let bool = false;
+    let username = document.getElementById('username_input').value;
+    let password = document.getElementById('password_input').value;
+    username = username.toString();
+    password = password.toString();
+    test = testClient(username,password);
+    bool = test[0];
+    if(bool){
+        client.names = test[1];
+        client.users= test[2];
+        client.passwords = test[3];
+        client.moneys = 500;
+        removeUserLog();
+        mainMenu.style.display  = 'block';
+        mainMenuText.innerHTML = 'hola '+client.names + ' bienvenido al portal principal';
+    }
+    else{
+        alert('datos incorrectos, intentelo de nuevo porfavor');
+    }
 
 }
+
 /**Lo que sigue simplemente es manipular los elementos del DOM para mostrar las ventanas según la opción que se pida. */
 /**La ventana de los botones solo se le hace display. */
 /**el resto de las ventanas se crean directamente */
