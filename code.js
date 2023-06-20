@@ -1,5 +1,5 @@
 let logButton = document.getElementById('log_in_button');
-let users = [{name:"joe",userName:"pal",password:"123"},{name:"pat",userName:"ghanima",password:"321"}];
+let users = [{name:"joe",userName:"pal",password:"123"},{name:"pat",userName:"ghanima",password:"321"},{name:"aldro",userName:"a",password:"1"}];
 class cliente {
     /**La clase cliente tiene las variables de nombre, contraseña  y dinero.
      * Las funciones principales son las relacionadas a la manipulación del dinero.
@@ -64,22 +64,11 @@ class cliente {
         }
     }
 }
-let client = new cliente("", "", 500);
+let client = new cliente("", "", 500000);
 
 function removeUserLog() {
     userWindow = document.getElementById('user_log');
     userWindow.remove();
-}
-function addOptionsWindow() {
-    const ventanaPrincipal = document.createElement("div");
-    const textoPrueba = document.createElement("p");
-    const node = document.createTextNode(client.passwords);
-    textoPrueba.appendChild(node);
-    ventanaPrincipal.className = "window";
-    body = document.getElementById('main_window');
-    body.appendChild(ventanaPrincipal);
-    ventanaPrincipal.appendChild(textoPrueba);
-
 }
 function testClient(use,pass){
     let validate = false;
@@ -109,7 +98,7 @@ function defineClient() {
         client.names = test[1];
         client.users= test[2];
         client.passwords = test[3];
-        client.moneys = 500;
+        client.moneys = 500000;
         removeUserLog();
         mainMenu.style.display  = 'block';
         mainMenuText.innerHTML = 'hola '+client.names + ' bienvenido al portal principal';
@@ -119,7 +108,26 @@ function defineClient() {
     }
 
 }
+function hideButtons() {
+    let buttonMenu = document.getElementById("main_menu");
+    buttonMenu.style.display = "none";
+}
+function addSaldoWindow() {
+    hideButtons();
+    const ventanaPrincipal = document.createElement("div");
+    const textoPrueba = document.createElement("p");
+    const textoSaldo = document.createElement("p");
+    const node = document.createTextNode("Su saldo actual es de");
+    const node2 = document.createTextNode(client.moneys);
+    textoPrueba.appendChild(node);
+    textoSaldo.appendChild(node2);
+    ventanaPrincipal.className = "window";
+    body = document.getElementById('main_window');
+    body.appendChild(ventanaPrincipal);
+    ventanaPrincipal.appendChild(textoPrueba);
+    ventanaPrincipal.appendChild(textoSaldo);
 
+}
 /**Lo que sigue simplemente es manipular los elementos del DOM para mostrar las ventanas según la opción que se pida. */
 /**La ventana de los botones solo se le hace display. */
 /**el resto de las ventanas se crean directamente */
