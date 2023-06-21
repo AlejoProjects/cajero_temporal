@@ -154,4 +154,4 @@ function addSaldoWindow(valueCase) {
 }
 /**Lo que sigue es asignar una id a los elementos añadidos y crear dos funciones que utilicen las funciones addMoney(value) y substractMoney(value) de la clase client */
 /** Añadir la colección de transacciones*/
-/**Si queda tiempo utilizar bien el json*/
+/**Si queda tiempo utilizar bien el json para poder crear una base de datos de mentiras*/
