@@ -118,34 +118,54 @@ function addSaldoWindow(valueCase) {
      ->añadir saldo
      ->Retirar saldo
      ->consultar saldo
-     */ 
-    /*se definen los elementos principales de la ventana*/ 
+     */
+    /*se definen los elementos principales de la ventana*/
     const ventanaPrincipal = document.createElement("div");
     const textoPrueba = document.createElement("p");
     const textoSaldo = document.createElement("p");
     const textoBoton = document.createElement("span");
+    /**Crear el input que recogera los valores numericos */
     const valorIngresado = document.createElement("input");
-     /**Boton transacción se refiere al boton que tomara la información del input donde se retirara o se añadira el saldo */
+    /**Cambiar el tipo de input para que solo acepte numeros */
+    valorIngresado.type = "number";
+    /**Boton transacción se refiere al boton que tomara la información del input donde se retirara o se añadira el saldo */
     const botonTransaccion = document.createElement("button");
     /** Se refiere al texto que contiene los elementos*/
     const node = document.createTextNode("Su saldo actual es de");
-    const node2 = document.createTextNode(client.moneys);
+    const node2 = document.createTextNode(client.moneys +" $");
     const node3 = document.createTextNode("submit");
-    /*añade los textos a los parrafos y botones */ 
+    /*añade los textos a los parrafos y botones */
     textoPrueba.appendChild(node);
     textoSaldo.appendChild(node2);
-    botonTransaccion.appendChild(node3);
+    textoBoton.appendChild(node3);
+    /**Añadir el boton */
+    botonTransaccion.appendChild(textoBoton);
+    /**Añadir las clases y id de los objetos de la ventana. (Muy importante los id= valor ingresada y boton_transaccion) */
     ventanaPrincipal.className = "window";
     valorIngresado.className = "inputValue";
+    textoPrueba.id = "window_text";
+    textoBoton.id = "window_span";
+    valorIngresado.id = "dinero_ingresado";
     /**IMPORTANTE Añadir id y utilizarlo en una función */
-    botonTransaccion.className = "boton_transaccion";
     /**Finalmente añade los elementos */
     body = document.getElementById('main_window');
     body.appendChild(ventanaPrincipal);
     /**Si el valor es igual a uno se añade el input al html */
-    if(valueCase == 1){
-        ventanaPrincipal.appendChild(valorIngresado);
-        ventanaPrincipal.appendChild(botonTransaccion);
+    switch (valueCase) {
+        /**Las ID dependiendo del caso son muy importantes */
+        case 0:
+            break;
+        case 1:
+
+            botonTransaccion.id = "boton_transaccion_añadir";
+            ventanaPrincipal.appendChild(valorIngresado);
+            ventanaPrincipal.appendChild(botonTransaccion);
+            break;
+        case 2:
+            botonTransaccion.id = "boton_transaccion_restar";
+            ventanaPrincipal.appendChild(valorIngresado);
+            ventanaPrincipal.appendChild(botonTransaccion);
+            break;
     }
     ventanaPrincipal.appendChild(textoPrueba);
     ventanaPrincipal.appendChild(textoSaldo);

@@ -53,6 +53,7 @@ button span:not(hover) {
   -webkit-transition: all 1s;
   transition: all 1s;
 }
+
 /*input style*/
 .input,.inputValue {
   border: none;
@@ -131,4 +132,33 @@ button span:not(hover) {
   margin-bottom: 25%;
   width: 70%;
   height: 90%;
+}
+/*sección de ventanas adicionales*/
+#boton_transaccion_añadir,#boton_transaccion_restar {
+  font-size: 18px;
+  border-radius: 0.5em;
+  border: 1px none #e8e8e8;
+  transition: all .3s;
+  margin-top: 15%; 
+  margin-bottom: 5%;
+  padding-left: 26%;
+  text-align: center;
+  height:50%;        
+ }
+ 
+ #boton_transaccion_añadir:active,#boton_transaccion_restar:active {
+  color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5,
+              inset -4px -4px 12px #ffffff;
+ }
+ #window_span{
+ font-size: small;
+ border-style: none;
+ margin-top: 5%;
+ margin-bottom: 5%;
+ height:60%;   
+ 
+ }
+#window_text {
+  margin-top:10%;
 }
