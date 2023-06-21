@@ -1,247 +1,134 @@
+body {
+  background-color: #e0e0e0;
+}
+p {
+ color: #e0e0e0;
+ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+/*button style*/
+button {
+  padding: 0.1em 0.25em;
+  width: 13em;
+  height: 4.2em;
+  background-color: #212121;
+  border: 0.08em none #fff;
+  border-radius: 0.3em;
+  font-size: 12px;
+}
 
+button span {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  bottom: 0.4em;
+  width: 8.25em;
+  height: 2.5em;
+  background-color: #212121;
+  border-radius: 0.2em;
+  font-size: 1.5em;
+  color: #fff;
+  border: 0.08em solid #fff;
+  -webkit-box-shadow: 0 0.4em 0.1em 0.019em #fff;
+          box-shadow: 0 0.4em 0.1em 0.019em #fff;
+}
+
+button span:hover {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: translate(0, 0.4em);
+      -ms-transform: translate(0, 0.4em);
+          transform: translate(0, 0.4em);
+  -webkit-box-shadow: 0 0 0 0 #fff;
+          box-shadow: 0 0 0 0 #fff;
+}
+
+button span:not(hover) {
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+/*input style*/
+.input,.inputValue {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+.input:focus,.inputValue:focus {
+  background-color: rgb(197, 197, 197);
+  transform: scale(1.05);
+}
+/*log_in button*/
+#log_in_button {
+  margin-top:10%;
+}
+/*winndow is the space where everything is existing*/
 .window {
-    display:grid;
-    justify-content: center;
-    justify-items: center;
-    margin-top: 20%;
-    margin-bottom: 20%;
-    margin-left:20%;
-    padding-bottom: 5%;
-    padding:100px;
-    border-style: solid;
-    width:50%;
-    height:100%;
-
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  margin-left: 20%;
+  padding-bottom: 5%;
+  padding: 100px;
+  border-style: none;
+  border-radius: 30px;
+  background: #212121;
+  width: 50%;
+  height: 100%;
+  
 }
 
 /*Se refiere a los elementos contenidos dentro de la ventana principal*/
-.user_log_element{
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    margin-bottom: 5%;
-    
+.user_log_element {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 5%;
 }
 /*se refiere a la caja pequeña que contiene el texto del usuario y el input*/
 .input_logs {
-    margin-right: 5%;
+  margin-right: 5%;
 }
 /*Se refiere a los elementos de la pantalla principal.*/
 #main_menu {
-    display:none;
-    
-    }
+  display: none;
+}
 #main_menu_text {
-    margin-left: 21%;
-    position: absolute;
-    margin-top: 1%;
-    
-
+  margin-left: 38%;
+  padding-top:2%;
+  position: absolute;
+  margin-top: 1%;
 }
 /*Se refiere a los elementos de los botones*/
-#main_menu_buttons{
-    display:grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    justify-items: center;
-    margin-top: 20%;
-    margin-bottom: 20%;
-    margin-left:20%;
-    padding-bottom: 5%;
-    padding:80px;
-    border-style: solid;
-    width:50%;
-    height:100%;
-
+#main_menu_buttons {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  margin-left: 20%;
+  padding-bottom: 5%;
+  padding: 80px;
+  border-style: solid;
+  width: 50%;
+  height: 100%;
 }
-.main_menu_button{
-    margin-bottom: 25%;
-    width:70%;
-    height:90%;
-
+.main_menu_button {
+  margin-bottom: 25%;
+  width: 70%;
+  height: 90%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
