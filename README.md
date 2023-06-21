@@ -1,1 +1,0 @@
-# cajero_temporal
