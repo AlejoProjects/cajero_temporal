@@ -1,5 +1,5 @@
 let logButton = document.getElementById('log_in_button');
-let users = [{ name: "joe", userName: "pal", password: "123" }, { name: "pat", userName: "ghanima", password: "321" }, { name: "aldro", userName: "a", password: "1" }];
+let users = [{ name: "joe", userName: "pal", password: "123",saldo:200 }, { name: "pat", userName: "ghanima", password: "321", saldo:290}, { name: "aldro", userName: "a", password: "1",saldo:67 }];
 class cliente {
     /**La clase cliente tiene las variables de nombre, contraseña  y dinero.
      * Las funciones principales son las relacionadas a la manipulación del dinero.
@@ -40,29 +40,43 @@ class cliente {
 
 
     addMoney(amount) {
+        if (amount > 0 && amount<990 ) {
+            this.money += amount;
+        } else {
+            alert("el monto no es valido");
+
+        }
+
         /**La función addMoney añade dinero al saldo total del cliente
          * si el valor ingresado supera al saldo maximo, el valor del dinero no es modificado.
          */
-        let totalValue = amount + this.money;
-        if (totalValue >= 990) {
-            console.log('el monto excede el maximo');
-        }
-        else {
-            this.money = amount;
-        }
+        // let totalValue = amount + this.money;
+        // if (totalValue >= 990) {
+        //     console.log('el monto excede el maximo');
+        // }
+        // else {
+        //     this.money = amount;
+        // }
     }
     substractMoney(amount) {
         /**La función substractMoney retira dinero al saldo total del cliente
         * si el valor ingresado deja el saldo en negativo, el valor del dinero no es modificado.
         */
-        let totalValue = amount - this.money;
-        if (totalValue < 0) {
-            console.log('el monto supera el saldo');
+    //     if (amount > 0 && amount <= this.money) {
+    //         this.money -= amount;
+    //     } else {
+    //         alert("el monto supera el saldo disponible");
+    //     }
+    // }
+        let totalValue = this.money - amount;
+        if (totalValue < 10) {
+            alert('el monto supera el saldo');
         }
         else {
-            this.money = amount;
+            this.money = totalValue;
         }
     }
+    //
 }
 let client = new cliente("", "", 500000);
 
@@ -76,7 +90,7 @@ function testClient(use, pass) {
     for (i in users) {
         if (use == users[i].userName && pass == users[i].password) {
             validate = true;
-            respuesta = [validate, users[i].name, users[i].userName, users[i].password];
+            respuesta = [validate, users[i].name, users[i].userName, users[i].password, users[i].saldo];
             break;
         }
     }
@@ -98,7 +112,7 @@ function defineClient() {
         client.names = test[1];
         client.users = test[2];
         client.passwords = test[3];
-        client.moneys = 500000;
+        client.moneys = test[4];
         removeUserLog();
         mainMenu.style.display = 'block';
         mainMenuText.innerHTML = 'Hola ' + client.names + ' bienvenido al portal principal';
@@ -132,7 +146,7 @@ function addSaldoWindow(valueCase) {
     const botonTransaccion = document.createElement("button");
     /** Se refiere al texto que contiene los elementos*/
     const node = document.createTextNode("Su saldo actual es de");
-    const node2 = document.createTextNode(client.moneys +" $");
+    const node2 = document.createTextNode(client.moneys + " $");
     const node3 = document.createTextNode("submit");
     /*añade los textos a los parrafos y botones */
     textoPrueba.appendChild(node);
@@ -140,6 +154,8 @@ function addSaldoWindow(valueCase) {
     textoBoton.appendChild(node3);
     /**Añadir el boton */
     botonTransaccion.appendChild(textoBoton);
+    //
+
     /**Añadir las clases y id de los objetos de la ventana. (Muy importante los id= valor ingresada y boton_transaccion) */
     ventanaPrincipal.className = "window";
     valorIngresado.className = "inputValue";
@@ -160,18 +176,36 @@ function addSaldoWindow(valueCase) {
             botonTransaccion.id = "boton_transaccion_añadir";
             ventanaPrincipal.appendChild(valorIngresado);
             ventanaPrincipal.appendChild(botonTransaccion);
+            textoSaldo.id = "saldo_actual";
+            botonTransaccion.addEventListener("click", function () {
+                const montoIngresado = parseFloat(valorIngresado.value);
+                client.addMoney(montoIngresado);
+                textoSaldo.textContent = "Su saldo actual es de " + (client.moneys) + " $";
+            });
             break;
         case 2:
             botonTransaccion.id = "boton_transaccion_restar";
             ventanaPrincipal.appendChild(valorIngresado);
             ventanaPrincipal.appendChild(botonTransaccion);
+            textoSaldo.id = "saldo_actual";
+            botonTransaccion.addEventListener("click", function () {
+                const montoIngresado = parseFloat(valorIngresado.value);
+                client.substractMoney(montoIngresado);
+                textoSaldo.textContent = "Su saldo actual es de " + (client.moneys) + " $";
+            });
             break;
     }
     ventanaPrincipal.appendChild(textoPrueba);
     ventanaPrincipal.appendChild(textoSaldo);
     /*esconde la ventana de los botones*/
     hideButtons();
+    //w
+
+
+
+
 }
+
 /**Lo que sigue es asignar una id a los elementos añadidos y crear dos funciones que utilicen las funciones addMoney(value) y substractMoney(value) de la clase client */
 /** Añadir la colección de transacciones*/
 /**Si queda tiempo utilizar bien el json para poder crear una base de datos de mentiras*/
