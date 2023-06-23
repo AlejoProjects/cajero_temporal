@@ -15,7 +15,9 @@ button {
   border-radius: 0.3em;
   font-size: 12px;
 }
-
+#buton-volver{
+  display: none;
+}
 button span {
   position: relative;
   display: -webkit-box;
