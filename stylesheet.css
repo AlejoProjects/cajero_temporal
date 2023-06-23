@@ -15,9 +15,7 @@ button {
   border-radius: 0.3em;
   font-size: 12px;
 }
-#buton-volver{
-  display: none;
-}
+
 button span {
   position: relative;
   display: -webkit-box;
@@ -135,8 +133,11 @@ button span:not(hover) {
   width: 70%;
   height: 90%;
 }
+#boton_cerrar_sesion {
+  margin-left: 100%;
+}
 /*sección de ventanas adicionales*/
-#boton_transaccion_añadir,#boton_transaccion_restar {
+#boton_transaccion_añadir,#boton_transaccion_restar,#boton_volver {
   font-size: 18px;
   border-radius: 0.5em;
   border: 1px none #e8e8e8;
@@ -148,10 +149,20 @@ button span:not(hover) {
   height:50%;        
  }
  
- #boton_transaccion_añadir:active,#boton_transaccion_restar:active {
+ #boton_transaccion_añadir:active,#boton_transaccion_restar:active,#boton_volver:active {
   color: #666;
   box-shadow: inset 4px 4px 12px #c5c5c5,
-              inset -4px -4px 12px #ffffff;
+              ;
+ }
+ #boton_volver{
+  height:20%;  
+  margin-top:20%;
+  margin-right: 20%;
+
+
+ }
+ #volver_span {
+  font-size: medium;
  }
  #window_span{
  font-size: small;
@@ -163,4 +174,19 @@ button span:not(hover) {
  }
 #window_text {
   margin-top:10%;
+}
+/**SECCIÓN DE TRANSFERENCIA A OTRAS CUENTAS*/
+#contenedor_transferencia {
+  display:grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+}
+.input_transferencia {
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+}
+#boton_transaccion_transferencia{
+  margin-top: 5%;
+  margin-left: 20%;
 }

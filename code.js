@@ -1,5 +1,5 @@
 let logButton = document.getElementById('log_in_button');
-let users = [{ name: "joe", userName: "pal", password: "123",saldo:200 }, { name: "pat", userName: "ghanima", password: "321", saldo:290}, { name: "aldro", userName: "a", password: "1",saldo:67 }];
+let users = [{ name: "joe", userName: "pal", password: "123",saldo:200 }, { name: "pat", userName: "ghanima", password: "321", saldo:290}, { name: "aldro", userName: "a", password: "1",saldo:67 },{ name: "pat", userName: "", password: "", saldo:290}];
 class cliente {
     /**La clase cliente tiene las variables de nombre, contraseña  y dinero.
      * Las funciones principales son las relacionadas a la manipulación del dinero.
@@ -42,10 +42,13 @@ class cliente {
     addMoney(amount) {
         if (amount > 0 && amount<990 ) {
             this.money += amount;
-        } else {
-            alert("el monto no es valido");
+        } else if(isNaN(amount)){
+            alert("Ingresa un numero porfavor");
 
         }
+         else{
+            alert("el monto esta porfuera de lo que puede añadir, porfavor ingrese un valor valido");
+         }
 
         /**La función addMoney añade dinero al saldo total del cliente
          * si el valor ingresado supera al saldo maximo, el valor del dinero no es modificado.
@@ -71,6 +74,10 @@ class cliente {
         let totalValue = this.money - amount;
         if (totalValue < 10) {
             alert('el monto supera el saldo');
+        }
+        else if(isNaN(amount)){
+            alert("Ingresa un numero porfavor");
+
         }
         else {
             this.money = totalValue;
@@ -150,11 +157,13 @@ function addSaldoWindow(valueCase) {
      ->consultar saldo
      */
     /*se definen los elementos principales de la ventana*/
-    const volver = document.getElementById('buton-volver')
     const ventanaPrincipal = document.createElement("div");
+    const botonVolver = document.createElement("button");
     const textoPrueba = document.createElement("p");
     const textoSaldo = document.createElement("p");
     const textoBoton = document.createElement("span");
+    const textoBotonVolver = document.createElement("span");
+    textoBotonVolver.id = "volver_span";
     /**Crear el input que recogera los valores numericos */
     const valorIngresado = document.createElement("input");
     /**Cambiar el tipo de input para que solo acepte numeros */
@@ -165,17 +174,21 @@ function addSaldoWindow(valueCase) {
     const node = document.createTextNode("Su saldo actual es de");
     const node2 = document.createTextNode(client.moneys + " $");
     const node3 = document.createTextNode("submit");
+    const node4 = document.createTextNode("volver");
     /*añade los textos a los parrafos y botones */
     textoPrueba.appendChild(node);
     textoSaldo.appendChild(node2);
     textoBoton.appendChild(node3);
+    textoBotonVolver.appendChild(node4);
     /**Añadir el boton */
     botonTransaccion.appendChild(textoBoton);
+    botonVolver.appendChild(textoBotonVolver);
     //
 
     /**Añadir las clases y id de los objetos de la ventana. (Muy importante los id= valor ingresada y boton_transaccion) */
     ventanaPrincipal.className = "window";
     ventanaPrincipal.id = "windows";
+    botonVolver.id = "boton_volver";
     valorIngresado.className = "inputValue";
     textoPrueba.id = "window_text";
     textoBoton.id = "window_span";
@@ -184,7 +197,6 @@ function addSaldoWindow(valueCase) {
     /**Finalmente añade los elementos */
     body = document.getElementById('main_window');
     body.appendChild(ventanaPrincipal);
-    volver.style.display = 'block'
     /**Si el valor es igual a uno se añade el input al html */
     switch (valueCase) {
         /**Las ID dependiendo del caso son muy importantes */
@@ -213,9 +225,44 @@ function addSaldoWindow(valueCase) {
                 textoSaldo.textContent = "Su saldo actual es de " + (client.moneys) + " $";
             });
             break;
+            case 3:
+            const nombreTexto = document.createElement("p");
+            const usuarioTexto = document.createElement("p");
+            const nombreIngresado = document.createElement("input");
+            const usuarioIngresado = document.createElement("input");
+            nombreTexto.textContent = "nombre";
+            usuarioTexto.textContent= "usuario";
+            const contenedorTransferencia = document.createElement("div");
+            contenedorTransferencia.id="contenedor_transferencia";
+            nombreIngresado.className = "inputValue";
+            usuarioIngresado.className = "inputValue";
+            nombreIngresado.classList.add("input_transferencia") ;
+            usuarioIngresado.classList.add("input_transferencia");
+            usuarioIngresado.id = "usuario_input";
+            botonTransaccion.id = "boton_transaccion_transferencia";
+            contenedorTransferencia.appendChild(nombreTexto);
+            contenedorTransferencia.appendChild(nombreIngresado);
+            contenedorTransferencia.appendChild(usuarioTexto);
+            contenedorTransferencia.appendChild(usuarioIngresado);
+            ventanaPrincipal.appendChild(contenedorTransferencia);
+            ventanaPrincipal.appendChild(botonTransaccion);
+            textoSaldo.id = "saldo_actual";
+            botonTransaccion.addEventListener("click", function () {
+                const montoIngresado = parseFloat(valorIngresado.value);
+               
+            });
+            break;
     }
     ventanaPrincipal.appendChild(textoPrueba);
     ventanaPrincipal.appendChild(textoSaldo);
+    ventanaPrincipal.appendChild(botonVolver);
+    botonVolver.addEventListener("click", function () {
+        let ventana = document.getElementById('windows');
+        //ventana.style.display = "none";
+        ventana.remove()
+        let buttonMenu = document.getElementById("main_menu");
+        buttonMenu.style.display = "block";
+    });
     /*esconde la ventana de los botones*/
     hideButtons();
     //w
