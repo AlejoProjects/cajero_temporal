@@ -126,6 +126,22 @@ function hideButtons() {
     let buttonMenu = document.getElementById("main_menu");
     buttonMenu.style.display = "none";
 }
+
+function showMenu(){
+    let ventana = document.getElementById('windows');
+    //ventana.style.display = "none";
+    ventana.remove()
+    let buttonMenu = document.getElementById("main_menu");
+    buttonMenu.style.display = "block";
+
+    if (buttonMenu) {
+        const volver = document.getElementById('buton-volver')
+        volver.style.display = 'none'
+    }else{
+        console.log('no oculta volver Boton');
+    }
+}
+
 function addSaldoWindow(valueCase) {
     /* La función addSaldoWindow crea una ventana donde dependiendo del boton pulsado se 
      insertaran los elementos necesarios para:
@@ -134,6 +150,7 @@ function addSaldoWindow(valueCase) {
      ->consultar saldo
      */
     /*se definen los elementos principales de la ventana*/
+    const volver = document.getElementById('buton-volver')
     const ventanaPrincipal = document.createElement("div");
     const textoPrueba = document.createElement("p");
     const textoSaldo = document.createElement("p");
@@ -158,6 +175,7 @@ function addSaldoWindow(valueCase) {
 
     /**Añadir las clases y id de los objetos de la ventana. (Muy importante los id= valor ingresada y boton_transaccion) */
     ventanaPrincipal.className = "window";
+    ventanaPrincipal.id = "windows";
     valorIngresado.className = "inputValue";
     textoPrueba.id = "window_text";
     textoBoton.id = "window_span";
@@ -166,6 +184,7 @@ function addSaldoWindow(valueCase) {
     /**Finalmente añade los elementos */
     body = document.getElementById('main_window');
     body.appendChild(ventanaPrincipal);
+    volver.style.display = 'block'
     /**Si el valor es igual a uno se añade el input al html */
     switch (valueCase) {
         /**Las ID dependiendo del caso son muy importantes */
