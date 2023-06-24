@@ -1,5 +1,5 @@
 let logButton = document.getElementById('log_in_button');
-let users = [{ name: "joe", userName: "pal", password: "123",saldo:200 }, { name: "pat", userName: "ghanima", password: "321", saldo:290}, { name: "aldro", userName: "a", password: "1",saldo:67 },{ name: "pat", userName: "", password: "", saldo:290}];
+let users = [{ name: "joe", userName: "pal", password: "123", saldo: 200 }, { name: "pat", userName: "ghanima", password: "321", saldo: 290 }, { name: "aldro", userName: "a", password: "1", saldo: 67 }, { name: "pat", userName: "", password: "", saldo: 290 }];
 class cliente {
     /**La clase cliente tiene las variables de nombre, contraseña  y dinero.
      * Las funciones principales son las relacionadas a la manipulación del dinero.
@@ -40,15 +40,15 @@ class cliente {
 
 
     addMoney(amount) {
-        if (amount > 0 && amount<990 ) {
+        if (amount > 0 && amount < 990) {
             this.money += amount;
-        } else if(isNaN(amount)){
+        } else if (isNaN(amount)) {
             alert("Ingresa un numero porfavor");
 
         }
-         else{
+        else {
             alert("el monto esta porfuera de lo que puede añadir, porfavor ingrese un valor valido");
-         }
+        }
 
         /**La función addMoney añade dinero al saldo total del cliente
          * si el valor ingresado supera al saldo maximo, el valor del dinero no es modificado.
@@ -65,17 +65,17 @@ class cliente {
         /**La función substractMoney retira dinero al saldo total del cliente
         * si el valor ingresado deja el saldo en negativo, el valor del dinero no es modificado.
         */
-    //     if (amount > 0 && amount <= this.money) {
-    //         this.money -= amount;
-    //     } else {
-    //         alert("el monto supera el saldo disponible");
-    //     }
-    // }
+        //     if (amount > 0 && amount <= this.money) {
+        //         this.money -= amount;
+        //     } else {
+        //         alert("el monto supera el saldo disponible");
+        //     }
+        // }
         let totalValue = this.money - amount;
         if (totalValue < 10) {
             alert('el monto supera el saldo');
         }
-        else if(isNaN(amount)){
+        else if (isNaN(amount)) {
             alert("Ingresa un numero porfavor");
 
         }
@@ -88,10 +88,16 @@ class cliente {
 let client = new cliente("", "", 500000);
 
 function removeUserLog() {
+    /**La función removeUserLog elimina el user_log despues de iniciar sesión */
     userWindow = document.getElementById('user_log');
     userWindow.remove();
 }
 function testClient(use, pass) {
+    /**La función testClient comprueba si el usuario y contraseña ingresados existen en un usuario
+     * Las variables use y pass son variables de tipo string.
+     *validate = bool , respuesta = array
+     *
+     */
     let validate = false;
     let respuesta = [validate, "", "", ""];
     for (i in users) {
@@ -105,7 +111,7 @@ function testClient(use, pass) {
 }
 
 function defineClient() {
-    /**Crea un cliente al  */
+    /**Crea un cliente al iniciar sesión */
     let mainMenu = document.getElementById('main_menu');
     let mainMenuText = document.getElementById('main_menu_text');
     let bool = false;
@@ -130,11 +136,13 @@ function defineClient() {
 
 }
 function hideButtons() {
+    /**La función hideButtons tiene como objetivo esconder la pantalla de botones */
     let buttonMenu = document.getElementById("main_menu");
     buttonMenu.style.display = "none";
 }
 
-function showMenu(){
+function showMenu() {
+    /**La función showMenu elimina la ventana creada y muestra el menu de botones. */
     let ventana = document.getElementById('windows');
     //ventana.style.display = "none";
     ventana.remove()
@@ -144,11 +152,82 @@ function showMenu(){
     if (buttonMenu) {
         const volver = document.getElementById('buton-volver')
         volver.style.display = 'none'
-    }else{
+    } else {
         console.log('no oculta volver Boton');
     }
 }
-
+function crearVentanaDeAdicion(bt,vp,ts,vi){
+    /**Las variables ingresadas son componentes del DOM, donde:
+     * bt = botonTransaccion
+     * vp = ventanaPrincipal
+     * ts = textoSaldo
+     * vi = valorIngresado
+     */
+    bt.id = "boton_transaccion_añadir";
+    vp.appendChild(vi);
+    vp.appendChild(bt);
+    ts.id = "saldo_actual";
+    bt.addEventListener("click", function () {
+        const montoIngresado = parseFloat(vi.value);
+        client.addMoney(montoIngresado);
+        ts.textContent = "Su saldo actual es de " + (client.moneys) + " $";
+    });
+}
+function crearVentanaTransaccion(bt,vp,ts,vi){
+    const nombreTexto = document.createElement("p");
+    const usuarioTexto = document.createElement("p");
+    const nombreIngresado = document.createElement("input");
+    const usuarioIngresado = document.createElement("input");
+    nombreTexto.textContent = "nombre";
+    usuarioTexto.textContent = "usuario";
+    const contenedorTransferencia = document.createElement("div");
+    contenedorTransferencia.id = "contenedor_transferencia";
+    nombreIngresado.className = "inputValue";
+    usuarioIngresado.className = "inputValue";
+    nombreIngresado.classList.add("input_transferencia");
+    usuarioIngresado.classList.add("input_transferencia");
+    usuarioIngresado.id = "usuario_input";
+    bt.id = "boton_transaccion_transferencia";
+    contenedorTransferencia.appendChild(nombreTexto);
+    contenedorTransferencia.appendChild(nombreIngresado);
+    contenedorTransferencia.appendChild(usuarioTexto);
+    contenedorTransferencia.appendChild(usuarioIngresado);
+    vp.appendChild(contenedorTransferencia);
+    vp.appendChild(bt);
+    ts.id = "saldo_actual";
+    bt.addEventListener("click", function () {
+        const montoIngresado = parseFloat(vi.value);
+});
+}
+function crearVentanaDeSubstraccion(bt,vp,ts,vi){
+    /**Las variables ingresadas son componentes del DOM, donde:
+     * bt = botonTransaccion
+     * vp = ventanaPrincipal
+     * ts = textoSaldo
+     * vi = valorIngresado
+     */
+    bt.id = "boton_transaccion_restar";
+    vp.appendChild(vi);
+    vp.appendChild(bt);
+    ts.id = "saldo_actual";
+    bt.addEventListener("click", function () {
+        const montoIngresado = parseFloat(vi.value);
+        client.substractMoney(montoIngresado);
+        ts.textContent = "Su saldo actual es de " + (client.moneys) + " $";
+    });
+}
+function transferenciaCuentas(nameTrans,useTrans){
+/**Usar la function testClient como referencia
+ *
+ */
+}
+function cerrarSesion(){
+/**La función cerrarSesión debe
+ * eliminar los valores actuales de client.
+ * esconder la ventana de botones
+ * mostrar la ventana de user_log
+ */
+}
 function addSaldoWindow(valueCase) {
     /* La función addSaldoWindow crea una ventana donde dependiendo del boton pulsado se 
      insertaran los elementos necesarios para:
@@ -199,77 +278,33 @@ function addSaldoWindow(valueCase) {
     body.appendChild(ventanaPrincipal);
     /**Si el valor es igual a uno se añade el input al html */
     switch (valueCase) {
-        /**Las ID dependiendo del caso son muy importantes */
+        /**Según el valor de la función se crean modificaciones a las ventanas correspondientes */
         case 0:
             break;
         case 1:
-
-            botonTransaccion.id = "boton_transaccion_añadir";
-            ventanaPrincipal.appendChild(valorIngresado);
-            ventanaPrincipal.appendChild(botonTransaccion);
-            textoSaldo.id = "saldo_actual";
-            botonTransaccion.addEventListener("click", function () {
-                const montoIngresado = parseFloat(valorIngresado.value);
-                client.addMoney(montoIngresado);
-                textoSaldo.textContent = "Su saldo actual es de " + (client.moneys) + " $";
-            });
+            crearVentanaDeAdicion(botonTransaccion,ventanaPrincipal,textoSaldo,valorIngresado);
             break;
         case 2:
-            botonTransaccion.id = "boton_transaccion_restar";
-            ventanaPrincipal.appendChild(valorIngresado);
-            ventanaPrincipal.appendChild(botonTransaccion);
-            textoSaldo.id = "saldo_actual";
-            botonTransaccion.addEventListener("click", function () {
-                const montoIngresado = parseFloat(valorIngresado.value);
-                client.substractMoney(montoIngresado);
-                textoSaldo.textContent = "Su saldo actual es de " + (client.moneys) + " $";
-            });
+            crearVentanaDeSubstraccion(botonTransaccion,ventanaPrincipal,textoSaldo,valorIngresado);
             break;
-            case 3:
-            const nombreTexto = document.createElement("p");
-            const usuarioTexto = document.createElement("p");
-            const nombreIngresado = document.createElement("input");
-            const usuarioIngresado = document.createElement("input");
-            nombreTexto.textContent = "nombre";
-            usuarioTexto.textContent= "usuario";
-            const contenedorTransferencia = document.createElement("div");
-            contenedorTransferencia.id="contenedor_transferencia";
-            nombreIngresado.className = "inputValue";
-            usuarioIngresado.className = "inputValue";
-            nombreIngresado.classList.add("input_transferencia") ;
-            usuarioIngresado.classList.add("input_transferencia");
-            usuarioIngresado.id = "usuario_input";
-            botonTransaccion.id = "boton_transaccion_transferencia";
-            contenedorTransferencia.appendChild(nombreTexto);
-            contenedorTransferencia.appendChild(nombreIngresado);
-            contenedorTransferencia.appendChild(usuarioTexto);
-            contenedorTransferencia.appendChild(usuarioIngresado);
-            ventanaPrincipal.appendChild(contenedorTransferencia);
-            ventanaPrincipal.appendChild(botonTransaccion);
-            textoSaldo.id = "saldo_actual";
-            botonTransaccion.addEventListener("click", function () {
-                const montoIngresado = parseFloat(valorIngresado.value);
-               
-            });
+        case 3:
+            crearVentanaTransaccion(botonTransaccion,ventanaPrincipal,textoSaldo,valorIngresado);
             break;
     }
     ventanaPrincipal.appendChild(textoPrueba);
     ventanaPrincipal.appendChild(textoSaldo);
     ventanaPrincipal.appendChild(botonVolver);
+    /**Boton de devolverse a la ventana principal */
     botonVolver.addEventListener("click", function () {
         let ventana = document.getElementById('windows');
         //ventana.style.display = "none";
-        ventana.remove()
+        ventana.remove();
         let buttonMenu = document.getElementById("main_menu");
         buttonMenu.style.display = "block";
     });
     /*esconde la ventana de los botones*/
     hideButtons();
     //w
-
-
-
-
 }
 
 /**Lo que sigue es asignar una id a los elementos añadidos y crear dos funciones que utilicen las funciones addMoney(value) y substractMoney(value) de la clase client */
