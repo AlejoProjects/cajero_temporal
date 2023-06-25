@@ -156,7 +156,7 @@ function showMenu() {
         console.log('no oculta volver Boton');
     }
 }
-function crearVentanaDeAdicion(bt,vp,ts,vi){
+function crearVentanaDeAdicion(bt, vp, ts, vi) {
     /**Las variables ingresadas son componentes del DOM, donde:
      * bt = botonTransaccion
      * vp = ventanaPrincipal
@@ -173,33 +173,74 @@ function crearVentanaDeAdicion(bt,vp,ts,vi){
         ts.textContent = "Su saldo actual es de " + (client.moneys) + " $";
     });
 }
-function crearVentanaTransaccion(bt,vp,ts,vi){
+function crearVentanaTransaccion(bt, vp, ts) {
     const nombreTexto = document.createElement("p");
     const usuarioTexto = document.createElement("p");
+    const dineroTexto = document.createElement("p");
     const nombreIngresado = document.createElement("input");
     const usuarioIngresado = document.createElement("input");
+    const dineroIngresado = document.createElement("input");
     nombreTexto.textContent = "nombre";
     usuarioTexto.textContent = "usuario";
+    dineroTexto.textContent = "dinero";
     const contenedorTransferencia = document.createElement("div");
     contenedorTransferencia.id = "contenedor_transferencia";
     nombreIngresado.className = "inputValue";
     usuarioIngresado.className = "inputValue";
+    dineroIngresado.className = "inputValue";
     nombreIngresado.classList.add("input_transferencia");
     usuarioIngresado.classList.add("input_transferencia");
+    dineroIngresado.classList.add("input_transferencia");
     usuarioIngresado.id = "usuario_input";
     bt.id = "boton_transaccion_transferencia";
     contenedorTransferencia.appendChild(nombreTexto);
     contenedorTransferencia.appendChild(nombreIngresado);
     contenedorTransferencia.appendChild(usuarioTexto);
     contenedorTransferencia.appendChild(usuarioIngresado);
+    contenedorTransferencia.appendChild(dineroTexto);
+    contenedorTransferencia.appendChild(dineroIngresado);
     vp.appendChild(contenedorTransferencia);
     vp.appendChild(bt);
     ts.id = "saldo_actual";
     bt.addEventListener("click", function () {
-        const montoIngresado = parseFloat(vi.value);
-});
+        /**La función transferenciaCuentas toma el nombre y usuario de la cuenta a transferir y si encuentra un match envia el dinero a la persona transferida y lo descuenta de la cuenta local
+     * namesTrans y useTrans son strings
+     * 
+     *
+     */
+        const nameTrans = nombreIngresado.value;
+        const useTrans = usuarioIngresado.value;
+        const valorTrans = dineroIngresado.value;
+        let alertaDatos = 0;
+        console.log("holi");
+        for (i in users) {
+            if (useTrans == users[i].userName && nameTrans == users[i].name) {
+                if (!isNaN(valorTrans)) {
+                    const totalValue = client.moneys - parseFloat(valorTrans);
+                    if (totalValue < 10) {
+                        alert('el monto supera el saldo');
+                    }
+                    else {
+                        client.substractMoney(valorTrans);
+                        const dineroTotal = parseFloat(users[i].saldo) + parseFloat(valorTrans);
+                        users[i].saldo = dineroTotal;
+                        console.log('transferencia a ' + users[i].name + ' por un valor de ' + valorTrans);
+                        console.log('el saldo de ' + users[i].name + ' es de ' + users[i].saldo);
+                        ts.textContent = "Su saldo actual es de " + (client.moneys) + " $";
+                        window_text.textContent = "usted ha realizado una transferencia por " + valorTrans + " a " + nameTrans;
+                    }
+                }
+                else {
+                    alert('ingrese un numero valido');
+                }
+                alertaDatos = 1;
+                break;
+            }
+        }
+        if(alertaDatos == 0){alert('ingrese bien el nombre o el usuario de la persona a enviar')};
+    });
 }
-function crearVentanaDeSubstraccion(bt,vp,ts,vi){
+function crearVentanaDeSubstraccion(bt, vp, ts, vi) {
     /**Las variables ingresadas son componentes del DOM, donde:
      * bt = botonTransaccion
      * vp = ventanaPrincipal
@@ -216,24 +257,29 @@ function crearVentanaDeSubstraccion(bt,vp,ts,vi){
         ts.textContent = "Su saldo actual es de " + (client.moneys) + " $";
     });
 }
-function transferenciaCuentas(nameTrans,useTrans){
-/**Usar la function testClient como referencia
- *
- */
+function addTransaccion(nodeTrans, valor) {
+    const totalText = document.createElement('p');
+    const totalNode = document.createTextNode(nodeTrans + valor);
+    totalText.appendChild(totalNode);
+    transferDiv.appendChild(totalText);
 }
-function cerrarSesion(){
-/**La función cerrarSesión debe
- * eliminar los valores actuales de client.
- * esconder la ventana de botones
- * mostrar la ventana de user_log
- */
+function cerrarSesion() {
+    /**La función cerrarSesión debe
+     * if users[i].username == client.userName{
+     * users[i].saldo = client.moneys;
+     * }
+     * eliminar los valores actuales de client.
+     * esconder la ventana de botones
+     * mostrar la ventana de user_log
+     * 
+     */
 }
 function addSaldoWindow(valueCase) {
     /* La función addSaldoWindow crea una ventana donde dependiendo del boton pulsado se 
-     insertaran los elementos necesarios para:
-     ->añadir saldo
-     ->Retirar saldo
-     ->consultar saldo
+     *insertaran los elementos necesarios para:
+     *->añadir saldo
+     *->Retirar saldo
+     *->consultar saldo
      */
     /*se definen los elementos principales de la ventana*/
     const ventanaPrincipal = document.createElement("div");
@@ -282,13 +328,13 @@ function addSaldoWindow(valueCase) {
         case 0:
             break;
         case 1:
-            crearVentanaDeAdicion(botonTransaccion,ventanaPrincipal,textoSaldo,valorIngresado);
+            crearVentanaDeAdicion(botonTransaccion, ventanaPrincipal, textoSaldo, valorIngresado);
             break;
         case 2:
-            crearVentanaDeSubstraccion(botonTransaccion,ventanaPrincipal,textoSaldo,valorIngresado);
+            crearVentanaDeSubstraccion(botonTransaccion, ventanaPrincipal, textoSaldo, valorIngresado);
             break;
         case 3:
-            crearVentanaTransaccion(botonTransaccion,ventanaPrincipal,textoSaldo,valorIngresado);
+            crearVentanaTransaccion(botonTransaccion, ventanaPrincipal, textoSaldo, valorIngresado);
             break;
     }
     ventanaPrincipal.appendChild(textoPrueba);
