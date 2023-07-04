@@ -89,8 +89,51 @@ let client = new cliente("", "", 500000);
 
 function removeUserLog() {
     /**La función removeUserLog elimina el user_log despues de iniciar sesión */
-    userWindow = document.getElementById('user_log');
-    userWindow.remove();
+    let userLogWindow = document.getElementById('user_login');
+    userLogWindow.style.display = "none";
+}
+function showUserLog(){
+    userWindow = document.getElementById('user_login');
+    userWindow.style.display = "grid";
+    /**Crear los elementos originales 
+    const megaDiv = document.createElement("div");
+    const primerDiv = document.createElement("div");
+    const segundoDiv = document.createElement("div");
+    const primerP = document.createElement("p");
+    const segundoP = document.createElement("p");
+    let primerInput = document.createElement("input");
+    let segundoInput = document.createElement("input");
+    let ingresButton = document.createElement("button");
+    const ingresSpan = document.createElement("span");
+    /**Añadir los ids y clases correspondientes 
+    megaDiv.id = "user_log";
+    megaDiv.className = "window";
+    primerDiv.className = "input_logs";
+    segundoDiv.className = "input_logs";
+    primerInput.id = "username_input";
+    segundoInput = "username_input";
+    primerInput.className ="input_logs input";
+    segundoInput.className ="input_logs input";
+    primerP.className ="input_logs";
+    segundoP.className ="input_logs";
+    ingresButton.id = "log_in_button";
+    ingresButton.className = "user_log_element";
+    ingresButton.addEventListener("click",defineClient());
+    /**Contenidos de los textos
+    primerP.textContent = "username";
+    segundoP.textContent = "password";
+    ingresSpan.textContent = "Log In";
+    /** append elements
+    primerDiv.appendChild(primerP);
+    primerDiv.appendChild(primerInput);
+    segundoDiv.appendChild(segundoP);
+    segundoDiv.appendChild(segundoInput);
+    megaDiv.appendChild(primerDiv);
+    megaDiv.appendChild(segundoDiv);
+    ingresButton.appendChild(ingresSpan);
+    megaDiv.appendChild(ingresButton);
+    window.appendChild(ingresButton);
+    **/
 }
 function testClient(use, pass) {
     /**La función testClient comprueba si el usuario y contraseña ingresados existen en un usuario
@@ -237,7 +280,7 @@ function crearVentanaTransaccion(bt, vp, ts) {
                 break;
             }
         }
-        if(alertaDatos == 0){alert('ingrese bien el nombre o el usuario de la persona a enviar')};
+        if (alertaDatos == 0) { alert('ingrese bien el nombre o el usuario de la persona a enviar') };
     });
 }
 function crearVentanaDeSubstraccion(bt, vp, ts, vi) {
@@ -263,16 +306,23 @@ function addTransaccion(nodeTrans, valor) {
     totalText.appendChild(totalNode);
     transferDiv.appendChild(totalText);
 }
+
 function cerrarSesion() {
+    for (i in users) {
+        if (users[i].userName == client.userName) {
+            users[i].saldo = client.moneys;
+        }
+    }
+    hideButtons();
+    showUserLog();
+    
     /**La función cerrarSesión debe
-     * if users[i].username == client.userName{
-     * users[i].saldo = client.moneys;
-     * }
      * eliminar los valores actuales de client.
      * esconder la ventana de botones
      * mostrar la ventana de user_log
      * 
      */
+
 }
 function addSaldoWindow(valueCase) {
     /* La función addSaldoWindow crea una ventana donde dependiendo del boton pulsado se 
@@ -346,9 +396,9 @@ function addSaldoWindow(valueCase) {
         //ventana.style.display = "none";
         ventana.remove();
         let buttonMenu = document.getElementById("main_menu");
-        buttonMenu.style.display = "block";
+        buttonMenu.style.display = "block"; 
     });
-    /*esconde la ventana de los botones*/
+    /*esconde la ventana de los botones userWindow.style.display = 'grid';*/
     hideButtons();
     //w
 }

@@ -74,7 +74,7 @@ button span:not(hover) {
   margin-top:10%;
 }
 /*winndow is the space where everything is existing*/
-.window {
+.window,.log_window {
   display: grid;
   justify-content: center;
   justify-items: center;

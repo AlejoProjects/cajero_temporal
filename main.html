@@ -9,7 +9,7 @@
 </head>
 
 <body id="main_window">
-    <div id="user_log" class="window">
+    <div id="user_login" class="log_window">
         <div class="user_log_element">
             <p class="input_logs">username </p>
             <input type="text"  autocomplete="off" name="text" placeholder="Usuario" id="username_input" class="input_logs input">
@@ -27,7 +27,7 @@
             <button class="main_menu_button" onclick="addSaldoWindow(2)"><span>Retirar Saldo</span></button>
             <button class="main_menu_button" onclick="addSaldoWindow(1)"><span>Añadir Saldo</span></button>
             <button class="main_menu_button" onclick="addSaldoWindow(3)"><span>Transferencias</span></button>
-            <button class="main_menu_button" id="boton_cerrar_sesion"><span>Cerrar sesion</span></button>
+            <button class="main_menu_button" id="boton_cerrar_sesion" onclick="cerrarSesion()"><span>Cerrar sesion</span></button>
         </div>
     </div>
 
