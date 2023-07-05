@@ -41,7 +41,8 @@ class cliente {
 
     addMoney(amount) {
         if (amount > 0 && amount < 990) {
-            this.money += amount;
+            users[i].saldo = amount + users[i].saldo;
+            client.money = users[i].saldo;
         } else if (isNaN(amount)) {
             alert("Ingresa un numero por favor");
 
@@ -71,7 +72,8 @@ class cliente {
         //         alert("el monto supera el saldo disponible");
         //     }
         // }
-        let totalValue = this.money - amount;
+        users[i].saldo = client.money
+        let totalValue = users[i].saldo - amount;
         if (totalValue < 10) {
             alert('el monto supera el saldo');
         }
@@ -80,7 +82,8 @@ class cliente {
 
         }
         else {
-            this.money = totalValue;
+            users[i].saldo = totalValue;
+            client.money = users[i].saldo
         }
     }
     //
@@ -266,12 +269,12 @@ function crearVentanaTransaccion(bt, vp, ts) {
         for (i in users) {
             if (useTrans == users[i].userName && nameTrans == users[i].name) {
                 if (!isNaN(valorTrans)) {
-                    const totalValue = client.moneys - parseFloat(valorTrans);
+                    const totalValue = client.money - parseFloat(valorTrans);
                     if (totalValue < 10) {
                         alert('el monto supera el saldo');
                     }
                     else {
-                        client.substractMoney(valorTrans);
+                        client.money = totalValue
                         const dineroTotal = parseFloat(users[i].saldo) + parseFloat(valorTrans);
                         users[i].saldo = dineroTotal;
                         console.log('transferencia a ' + users[i].name + ' por un valor de ' + valorTrans);
@@ -317,7 +320,7 @@ function addTransaccion(nodeTrans, valor) {
 
 function cerrarSesion() {
     for (i in users) {
-        if (users[i].userName == client.userName) {
+        if (users[i].userName == client.user) {
             users[i].saldo = client.moneys;
         }
     }
@@ -355,7 +358,7 @@ function addSaldoWindow(valueCase) {
     const botonTransaccion = document.createElement("button");
     /** Se refiere al texto que contiene los elementos*/
     const node = document.createTextNode("Su saldo actual es de");
-    const node2 = document.createTextNode(client.moneys + " $");
+    const node2 = document.createTextNode(client.money + " $");
     const node3 = document.createTextNode("submit");
     const node4 = document.createTextNode("volver");
     /*añade los textos a los parrafos y botones */
