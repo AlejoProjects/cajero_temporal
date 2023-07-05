@@ -41,8 +41,13 @@ class cliente {
 
     addMoney(amount) {
         if (amount > 0 && amount < 990) {
-            users[i].saldo = amount + users[i].saldo;
-            client.money = users[i].saldo;
+
+            let resultadoSumaValores = users[i].saldo + amount
+            if (resultadoSumaValores > 990 ) {
+                alert("el monto esta por fuera de lo que puede añadir, por favor ingrese un monto valido.");    
+            }else {
+                users[i].saldo = amount + users[i].saldo;
+                client.money = users[i].saldo;}
         } else if (isNaN(amount)) {
             alert("Ingresa un numero por favor");
 
