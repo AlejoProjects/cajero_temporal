@@ -28,7 +28,7 @@ Al ingresar tendrás acceso a las siguientes opciones:
 - Retirar Monto
 - Transferir dinero entre usuarios
 
-Una vez se ingrese al sistema se podrá interactuar entre las diferentes opciones y transferir los saldos entre las cuentas disponibles,  cerrar la sesión y validar con otra cuenta si recibió dinero de otra cuenta, en la sección de consultar saldo.
+Una vez se ingrese al sistema se podrá interactuar entre las diferentes opciones y transferir los saldos entre las cuentas disponibles,  cerrar la sesión y en la sección de consultar saldo validar si recibió dinero de otra cuenta.
 
 ### Notas: 
 - Recuerda que esto es una página estática, por lo cual si recargas, por defecto los valores volverán a estar como estaban inicialmente.
