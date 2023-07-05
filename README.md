@@ -12,26 +12,27 @@
 ---
 Bienvenido/a al repositorio de nuestro proyecto.
 
-Realizamos una simulación de un sistema de transacciones bancarias tipo cajero automatico en el marco del curso de desarrollo web Full Stack en conjunto con la corporación Protalento y devf.la para el aparatado de "Introducción a JavaScript"
+Realizamos una simulación de un sistema de transacciones bancarias tipo cajero automático en el marco del curso de desarrollo web Full Stack en conjunto con la corporación Protalento y devf.la para el apartado de "Introducción a JavaScript"
 
 ## Guía de usuario
 ---
-Para usar este aplicativo web dentras los siguientes usuarios.
+Para usar este aplicativo web los siguientes usuarios estan registrados:
 
 ### userName: "pal"  password: "123"
 ### userName: "patico"  password: "321"
 ### userName: "alda"  password: "987654321"
 
-Al ingresar tendras acceso a las siguientes opciones:
+Al ingresar tendrás acceso a las siguientes opciones:
 - Consultar saldo
 - Ingresar monto
 - Retirar Monto
+- Transferir dinero entre usuarios
 
-Una vez dentro podras interactuar entre las diferentes opciones y transferir los saldos entre las cuentas disponibles, tambien podras cerrar la sesión y validar con otra cuenta si recibio dinero de otra cuenta en la seccion de consultar saldo
+Una vez se ingrese al sistema se podrá interactuar entre las diferentes opciones y transferir los saldos entre las cuentas disponibles,  cerrar la sesión y validar con otra cuenta si recibió dinero de otra cuenta, en la sección de consultar saldo.
 
 ### Notas: 
-- Recuerda que esto es una pagina estatica, por lo cual si recargas, los valores por defecto, volveran a como estaban en un principio
-- El montos minimo de la cuenta es de $10 y el maximo no puede superar los $990 
+- Recuerda que esto es una página estática, por lo cual si recargas, por defecto los valores volverán a estar como estaban inicialmente.
+- El monto mínimo de la cuenta es de $10 y el máximo no puede superar los $990.
 
 ## Guía de instalación
 ---
