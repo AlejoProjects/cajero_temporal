@@ -1,5 +1,5 @@
 let logButton = document.getElementById('log_in_button');
-let users = [{ name: "joe", userName: "pal", password: "123", saldo: 200 }, { name: "pat", userName: "ghanima", password: "321", saldo: 290 }, { name: "aldro", userName: "a", password: "1", saldo: 67 }, { name: "pat", userName: "", password: "", saldo: 290 }];
+let users = [{ name: "joe", userName: "pal", password: "123", saldo: 200 }, { name: "patricia", userName: "patico", password: "321", saldo: 290 }, { name: "aldro", userName: "alda", password: "987654321", saldo: 67 }];
 class cliente {
     /**La clase cliente tiene las variables de nombre, contraseña  y dinero.
      * Las funciones principales son las relacionadas a la manipulación del dinero.
@@ -43,11 +43,11 @@ class cliente {
         if (amount > 0 && amount < 990) {
             this.money += amount;
         } else if (isNaN(amount)) {
-            alert("Ingresa un numero porfavor");
+            alert("Ingresa un numero por favor");
 
         }
         else {
-            alert("el monto esta porfuera de lo que puede añadir, porfavor ingrese un valor valido");
+            alert("el monto esta por fuera de lo que puede añadir, por favor ingrese un monto valido");
         }
 
         /**La función addMoney añade dinero al saldo total del cliente
@@ -76,7 +76,7 @@ class cliente {
             alert('el monto supera el saldo');
         }
         else if (isNaN(amount)) {
-            alert("Ingresa un numero porfavor");
+            alert("Ingresa un numero por favor");
 
         }
         else {
@@ -174,7 +174,7 @@ function defineClient() {
         mainMenuText.innerHTML = 'Hola ' + client.names + ' bienvenido al portal principal';
     }
     else {
-        alert('datos incorrectos, intentelo de nuevo porfavor');
+        alert('datos incorrectos, intentelo de nuevo por favor');
     }
 
 }
