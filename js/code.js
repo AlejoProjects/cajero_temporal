@@ -199,6 +199,12 @@ function showMenu() {
         console.log('no oculta volver Boton');
     }
 }
+
+function hideText() {
+    const removetext = document.getElementById("window_text")
+    removetext.remove();
+}
+
 function crearVentanaDeAdicion(bt, vp, ts, vi) {
     /**Las variables ingresadas son componentes del DOM, donde:
      * bt = botonTransaccion
@@ -213,6 +219,7 @@ function crearVentanaDeAdicion(bt, vp, ts, vi) {
     bt.addEventListener("click", function () {
         const montoIngresado = parseFloat(vi.value);
         client.addMoney(montoIngresado);
+        hideText();
         ts.textContent = "Su saldo actual es de " + (client.moneys) + " $";
     });
 }
@@ -297,6 +304,7 @@ function crearVentanaDeSubstraccion(bt, vp, ts, vi) {
     bt.addEventListener("click", function () {
         const montoIngresado = parseFloat(vi.value);
         client.substractMoney(montoIngresado);
+        hideText();
         ts.textContent = "Su saldo actual es de " + (client.moneys) + " $";
     });
 }
