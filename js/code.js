@@ -1,12 +1,13 @@
 let logButton = document.getElementById('log_in_button');
 let users = [{ name: "joe", userName: "pal", password: "123", saldo: 200 }, { name: "patricia", userName: "patico", password: "321", saldo: 290 }, { name: "aldro", userName: "alda", password: "987654321", saldo: 67 }];
-class cliente {
     /**La clase cliente tiene las variables de nombre, contraseña  y dinero.
      * Las funciones principales son las relacionadas a la manipulación del dinero.
      *name es de tipo string
      *password es de tipo string
      *money es de tipo double
     */
+class cliente {
+
     constructor(name, user, password, money) {
         name = this.name;
         user = this.user;
@@ -38,7 +39,9 @@ class cliente {
         this.money = m;
     }
 
-
+  /**La función addMoney añade dinero al saldo total del cliente
+         * si el valor ingresado supera al saldo maximo, el valor del dinero no es modificado.
+         */
     addMoney(amount) {
         if (amount > 0 && amount < 990) {
 
@@ -55,28 +58,11 @@ class cliente {
         else {
             alert("el monto esta por fuera de lo que puede añadir, por favor ingrese un monto valido");
         }
-
-        /**La función addMoney añade dinero al saldo total del cliente
-         * si el valor ingresado supera al saldo maximo, el valor del dinero no es modificado.
-         */
-        // let totalValue = amount + this.money;
-        // if (totalValue >= 990) {
-        //     console.log('el monto excede el maximo');
-        // }
-        // else {
-        //     this.money = amount;
-        // }
     }
-    substractMoney(amount) {
-        /**La función substractMoney retira dinero al saldo total del cliente
+      /**La función substractMoney retira dinero al saldo total del cliente
         * si el valor ingresado deja el saldo en negativo, el valor del dinero no es modificado.
         */
-        //     if (amount > 0 && amount <= this.money) {
-        //         this.money -= amount;
-        //     } else {
-        //         alert("el monto supera el saldo disponible");
-        //     }
-        // }
+    substractMoney(amount) {
         users[i].saldo = client.money
         let totalValue = users[i].saldo - amount;
         if (totalValue < 10) {
@@ -94,61 +80,24 @@ class cliente {
     //
 }
 let client = new cliente("", "", 500000);
-
+/**La función removeUserLog elimina el user_log despues de iniciar sesión */
 function removeUserLog() {
-    /**La función removeUserLog elimina el user_log despues de iniciar sesión */
+
     let userLogWindow = document.getElementById('user_login');
     userLogWindow.style.display = "none";
 }
+/**La función showUserLog muestra  la pantalla de inicio de sesión*/
 function showUserLog(){
     userWindow = document.getElementById('user_login');
     userWindow.style.display = "grid";
-    /**Crear los elementos originales 
-    const megaDiv = document.createElement("div");
-    const primerDiv = document.createElement("div");
-    const segundoDiv = document.createElement("div");
-    const primerP = document.createElement("p");
-    const segundoP = document.createElement("p");
-    let primerInput = document.createElement("input");
-    let segundoInput = document.createElement("input");
-    let ingresButton = document.createElement("button");
-    const ingresSpan = document.createElement("span");
-    /**Añadir los ids y clases correspondientes 
-    megaDiv.id = "user_log";
-    megaDiv.className = "window";
-    primerDiv.className = "input_logs";
-    segundoDiv.className = "input_logs";
-    primerInput.id = "username_input";
-    segundoInput = "username_input";
-    primerInput.className ="input_logs input";
-    segundoInput.className ="input_logs input";
-    primerP.className ="input_logs";
-    segundoP.className ="input_logs";
-    ingresButton.id = "log_in_button";
-    ingresButton.className = "user_log_element";
-    ingresButton.addEventListener("click",defineClient());
-    /**Contenidos de los textos
-    primerP.textContent = "username";
-    segundoP.textContent = "password";
-    ingresSpan.textContent = "Log In";
-    /** append elements
-    primerDiv.appendChild(primerP);
-    primerDiv.appendChild(primerInput);
-    segundoDiv.appendChild(segundoP);
-    segundoDiv.appendChild(segundoInput);
-    megaDiv.appendChild(primerDiv);
-    megaDiv.appendChild(segundoDiv);
-    ingresButton.appendChild(ingresSpan);
-    megaDiv.appendChild(ingresButton);
-    window.appendChild(ingresButton);
-    **/
 }
-function testClient(use, pass) {
-    /**La función testClient comprueba si el usuario y contraseña ingresados existen en un usuario
+/**La función testClient comprueba si el usuario y contraseña ingresados existen en un usuario
      * Las variables use y pass son variables de tipo string.
      *validate = bool , respuesta = array
      *
      */
+function testClient(use, pass) {
+    
     let validate = false;
     let respuesta = [validate, "", "", ""];
     for (i in users) {
@@ -160,9 +109,9 @@ function testClient(use, pass) {
     }
     return respuesta;
 }
-
+   /**La función defineClient crea un cliente al iniciar sesión */
 function defineClient() {
-    /**Crea un cliente al iniciar sesión */
+ 
     let mainMenu = document.getElementById('main_menu');
     let mainMenuText = document.getElementById('main_menu_text');
     let bool = false;
@@ -186,14 +135,15 @@ function defineClient() {
     }
 
 }
+/**La función hideButtons tiene como objetivo esconder la pantalla de botones */
 function hideButtons() {
-    /**La función hideButtons tiene como objetivo esconder la pantalla de botones */
+
     let buttonMenu = document.getElementById("main_menu");
     buttonMenu.style.display = "none";
 }
-
+/**La función showMenu elimina la ventana creada y muestra el menu de botones. */
 function showMenu() {
-    /**La función showMenu elimina la ventana creada y muestra el menu de botones. */
+
     let ventana = document.getElementById('windows');
     //ventana.style.display = "none";
     ventana.remove()
@@ -212,14 +162,15 @@ function hideText() {
     const removetext = document.getElementById("window_text")
     removetext.remove();
 }
-
-function crearVentanaDeAdicion(bt, vp, ts, vi) {
-    /**Las variables ingresadas son componentes del DOM, donde:
+  /**La función crearVentanaDeAdicion crea una ventana de adición de dinero.
+  Las variables ingresadas son componentes del DOM, donde:
      * bt = botonTransaccion
      * vp = ventanaPrincipal
      * ts = textoSaldo
      * vi = valorIngresado
      */
+function crearVentanaDeAdicion(bt, vp, ts, vi) {
+  
     bt.id = "boton_transaccion_añadir";
     vp.appendChild(vi);
     vp.appendChild(bt);
@@ -260,12 +211,11 @@ function crearVentanaTransaccion(bt, vp, ts) {
     vp.appendChild(contenedorTransferencia);
     vp.appendChild(bt);
     ts.id = "saldo_actual";
-    bt.addEventListener("click", function () {
-        /**La función transferenciaCuentas toma el nombre y usuario de la cuenta a transferir y si encuentra un match envia el dinero a la persona transferida y lo descuenta de la cuenta local
+     /**La función transferenciaCuentas toma el nombre y usuario de la cuenta a transferir y si encuentra un match envia el dinero a la persona transferida y lo descuenta de la cuenta local
      * namesTrans y useTrans son strings
-     * 
-     *
      */
+    bt.addEventListener("click", function () {
+  
         const nameTrans = nombreIngresado.value;
         const useTrans = usuarioIngresado.value;
         const valorTrans = dineroIngresado.value;
@@ -298,13 +248,15 @@ function crearVentanaTransaccion(bt, vp, ts) {
         if (alertaDatos == 0) { alert('ingrese bien el nombre o el usuario de la persona a enviar') };
     });
 }
-function crearVentanaDeSubstraccion(bt, vp, ts, vi) {
-    /**Las variables ingresadas son componentes del DOM, donde:
+/**la función crearVentanaDeSubstraccionLas  crea una ventana donde se podra descontar el dinero ingresado en un input.
+variables ingresadas son componentes del DOM, donde:
      * bt = botonTransaccion
      * vp = ventanaPrincipal
      * ts = textoSaldo
      * vi = valorIngresado
-     */
+ */
+function crearVentanaDeSubstraccion(bt, vp, ts, vi) {
+ 
     bt.id = "boton_transaccion_restar";
     vp.appendChild(vi);
     vp.appendChild(bt);
@@ -322,7 +274,11 @@ function addTransaccion(nodeTrans, valor) {
     totalText.appendChild(totalNode);
     transferDiv.appendChild(totalText);
 }
-
+/**La función cerrarSesión debe
+ * eliminar los valores actuales de client.
+ * esconder la ventana de botones
+ * mostrar la ventana de user_log
+ */
 function cerrarSesion() {
     for (i in users) {
         if (users[i].userName == client.user) {
@@ -331,22 +287,15 @@ function cerrarSesion() {
     }
     hideButtons();
     showUserLog();
-    
-    /**La función cerrarSesión debe
-     * eliminar los valores actuales de client.
-     * esconder la ventana de botones
-     * mostrar la ventana de user_log
-     * 
-     */
-
 }
-function addSaldoWindow(valueCase) {
-    /* La función addSaldoWindow crea una ventana donde dependiendo del boton pulsado se 
+ /* La función addSaldoWindow crea una ventana donde dependiendo del boton pulsado se 
      *insertaran los elementos necesarios para:
      *->añadir saldo
      *->Retirar saldo
      *->consultar saldo
-     */
+ */
+function addSaldoWindow(valueCase) {
+   
     /*se definen los elementos principales de la ventana*/
     const ventanaPrincipal = document.createElement("div");
     const botonVolver = document.createElement("button");
@@ -418,7 +367,3 @@ function addSaldoWindow(valueCase) {
     hideButtons();
     //w
 }
-
-/**Lo que sigue es asignar una id a los elementos añadidos y crear dos funciones que utilicen las funciones addMoney(value) y substractMoney(value) de la clase client */
-/** Añadir la colección de transacciones*/
-/**Si queda tiempo utilizar bien el json para poder crear una base de datos de mentiras*/
